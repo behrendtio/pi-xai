@@ -126,6 +126,7 @@ describe("normalizeConfig / loadConfig", () => {
   });
 
   it("describable models are vision-capable (exclude composer)", () => {
+    expect(describableModels()).toContain("grok-4.6");
     expect(describableModels()).toContain("grok-4.5");
     expect(describableModels()).toContain("grok-4.3");
     expect(describableModels()).not.toContain("grok-composer-2.5-fast");
@@ -166,7 +167,7 @@ describe("composer model input", () => {
   });
 
   it("keeps native vision on flagship models", () => {
-    for (const id of ["grok-4.5", "grok-4.3"]) {
+    for (const id of ["grok-4.6", "grok-4.5", "grok-4.3"]) {
       const m = GROK_BUILD_MODELS.find((x) => x.id === id);
       expect(m?.input).toContain("image");
     }
@@ -244,7 +245,7 @@ describe("handleReadResult — no-op cases", () => {
 });
 
 describe("handleReadResult — image routing", () => {
-  it("describes an image via grok-4.5 and replaces it with text", async () => {
+  it("describes an image via grok-4.6 and replaces it with text", async () => {
     const ctx = buildCtx();
     const result = await handleReadResult(readEvent([imageBlock()]), ctx);
 

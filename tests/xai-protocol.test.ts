@@ -107,8 +107,10 @@ describe("Responses payload helpers", () => {
   });
 
   test("reasoning model gates", () => {
+    expect(grokSupportsReasoningEffort("grok-4.6")).toBe(true);
     expect(grokSupportsReasoningEffort("grok-4.5")).toBe(true);
     expect(grokSupportsReasoningEffort("grok-build")).toBe(false);
+    expect(grokWantsEncryptedReasoningInclude("grok-4.6")).toBe(true);
     expect(grokWantsEncryptedReasoningInclude("grok-4.5")).toBe(true);
     expect(grokWantsEncryptedReasoningInclude("grok-build")).toBe(false);
     expect(grokWantsEncryptedReasoningInclude("grok-4.20-reasoning")).toBe(true);
@@ -130,6 +132,8 @@ describe("Responses payload helpers", () => {
 describe("model catalog", () => {
   test("ids + context windows from official/live catalog knowledge", () => {
     const byId = Object.fromEntries(GROK_BUILD_MODELS.map((m) => [m.id, m]));
+    expect(byId["grok-4.6"]?.contextWindow).toBe(500_000);
+    expect(byId["grok-4.6"]?.thinkingLevelMap?.xhigh).toBe("xhigh");
     expect(byId["grok-4.5"]?.contextWindow).toBe(500_000);
     expect(byId["grok-build"]?.contextWindow).toBe(500_000);
     expect(byId["grok-composer-2.5-fast"]?.contextWindow).toBe(200_000);

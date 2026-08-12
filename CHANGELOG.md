@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Grok 4.6** (`grok-4.6`) in the `grok-build` model picker — 500k context, vision, reasoning + `xhigh` effort, encrypted reasoning include. Default for `xai_generate_text` and the vision describer.
+
 ## [0.17.1] - 2026-07-24
 
 ### Fixed
